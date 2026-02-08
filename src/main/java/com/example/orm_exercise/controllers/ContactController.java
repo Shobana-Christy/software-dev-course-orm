@@ -1,5 +1,6 @@
 package com.example.orm_exercise.controllers;
 
+import com.example.orm_exercise.models.Address;
 import com.example.orm_exercise.models.Contact;
 import com.example.orm_exercise.repositories.ContactRepository;
 import org.springframework.web.bind.annotation.*;

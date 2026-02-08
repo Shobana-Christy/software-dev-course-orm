@@ -1,9 +1,9 @@
 package com.example.orm_exercise.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Contact {
@@ -13,10 +13,23 @@ public class Contact {
     private String name;
     private String email;
     private String phoneNumber;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contact")
+    private List<Address> address;
+
+    public Contact() {
+    }
+
+    public Contact(int id, String name, String email, String phoneNumber) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
 
     public int getId() {
         return id;
     }
+
+
 
     public void setId(int id) {
         this.id = id;
@@ -46,12 +59,13 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
-    public Contact() {
+    public List<Address> getAddress() {
+        return address;
     }
 
-    public Contact(int id, String name, String email, String phoneNumber) {
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+    public void setAddress(List<Address> address) {
+        this.address = address;
     }
+
+
 }
